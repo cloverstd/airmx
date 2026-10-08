@@ -1,0 +1,24 @@
+# AIRMX 本地控制 —— 配置样例
+#
+# 复制为 config.toml 并填入你自己的值：
+#     cp examples/config.example.toml config.toml
+#
+# config.toml 已被 .gitignore 忽略，不会误提交。
+# device key 是控制设备的唯一凭据，请勿分享或公开。
+#
+# 如何获取 device key：见 docs/09-device-key.md
+
+[broker]
+# 你的 MQTT broker 地址。
+# 官方服务器 mqtt.airmx.cn 已停服，需要把该域名劫持到你自己内网的 broker。
+# 如果直接用 IP 连接，填 IP 即可。
+host = "mqtt.airmx.cn"
+port = 1883
+
+[device]
+# 设备 ID，由绑定时服务端分配（模拟服务器下通常是自增 ID）。
+id = 0
+
+# 设备密钥，32 位小写十六进制。
+# ⚠️ 这是你设备的真实密钥，等同于设备的控制权，切勿提交到任何公开仓库。
+key = "<YOUR-DEVICE-KEY>"

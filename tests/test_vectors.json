@@ -1,0 +1,70 @@
+{
+  "_comment": "签名算法测试向量。key 为合成占位符，不是任何真实设备的密钥。",
+  "key": "0123456789abcdef0123456789abcdef",
+  "vectors": [
+    {
+      "name": "控制指令 cmdId=100",
+      "body": {
+        "cmdId": 100,
+        "name": "control",
+        "time": 1700000000,
+        "from": 4,
+        "data": {
+          "power": 1,
+          "heatStatus": 0,
+          "mode": 0,
+          "cadr": 50,
+          "denoise": 0
+        }
+      },
+      "signed_inner": "\"cmdId\":100,\"name\":\"control\",\"time\":1700000000,\"from\":4,\"data\":{\"power\":1,\"heatStatus\":0,\"mode\":0,\"cadr\":50,\"denoise\":0}",
+      "sig": "80b161d4407168d344d9f2eaab92b230"
+    },
+    {
+      "name": "请求上报 cmdId=40（带 type）",
+      "body": {
+        "cmdId": 40,
+        "name": "instantPush",
+        "time": 1700000001,
+        "from": 4,
+        "type": "10000",
+        "data": {
+          "frequencyTime": 2,
+          "durationTime": 300
+        }
+      },
+      "signed_inner": "\"cmdId\":40,\"name\":\"instantPush\",\"time\":1700000001,\"from\":4,\"type\":\"10000\",\"data\":{\"frequencyTime\":2,\"durationTime\":300}",
+      "sig": "4989e4b5aa8fb1859d69298138b1dc0a"
+    },
+    {
+      "name": "设备上报 cmdId=210",
+      "body": {
+        "cmdId": 210,
+        "name": "eagleStatus",
+        "time": 1700000002,
+        "from": 2,
+        "data": {
+          "version": "10.00.17",
+          "power": 1,
+          "heatStatus": 0,
+          "mode": 0,
+          "cadr": 35,
+          "prm": 1020,
+          "g4Percent": 69,
+          "hepaPercent": 51,
+          "carbonId": "031",
+          "g4Id": "041",
+          "hepaId": "021",
+          "carbonPercent": 69,
+          "diffPressure1": 99999,
+          "diffPressure2": 99999,
+          "t0": 27,
+          "status": 0,
+          "denoise": 1
+        }
+      },
+      "signed_inner": "\"cmdId\":210,\"name\":\"eagleStatus\",\"time\":1700000002,\"from\":2,\"data\":{\"version\":\"10.00.17\",\"power\":1,\"heatStatus\":0,\"mode\":0,\"cadr\":35,\"prm\":1020,\"g4Percent\":69,\"hepaPercent\":51,\"carbonId\":\"031\",\"g4Id\":\"041\",\"hepaId\":\"021\",\"carbonPercent\":69,\"diffPressure1\":99999,\"diffPressure2\":99999,\"t0\":27,\"status\":0,\"denoise\":1}",
+      "sig": "61b0f05305d62a97790cfe346c868bc4"
+    }
+  ]
+}

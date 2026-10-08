@@ -1,0 +1,21 @@
+# 本地配置（含 device key，绝不提交）
+config.toml
+config.local.toml
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 抓包 / 调试产物（可能含设备真实报文与签名）
+*.jsonl
+capture*.json
+*.log
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store

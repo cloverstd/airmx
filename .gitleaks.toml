@@ -1,0 +1,40 @@
+# gitleaks 配置：防止 device key 被误提交
+#
+# 用法：
+#   gitleaks detect --config .gitleaks.toml
+#
+# 本仓库的示例与测试一律使用合成占位符，不应出现任何真实密钥。
+
+title = "AIRMX repository secret rules"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "airmx-device-key-assignment"
+description = "疑似 device key 赋值（32 位小写十六进制）"
+# 匹配 key = "..."、--key ...、AIRMX_KEY=... 等形式
+regex = '''(?i)(device[_\-]?key|airmx[_\-]?key|--key)\s*[=:]\s*["']?([0-9a-f]{32})["']?'''
+secretGroup = 2
+entropy = 0
+tags = ["key", "airmx"]
+
+[[rules]]
+id = "airmx-hex32-literal"
+description = "源码中的 32 位十六进制字面量，疑似硬编码密钥"
+regex = '''["']([0-9a-f]{32})["']'''
+secretGroup = 1
+entropy = 0
+tags = ["key", "airmx"]
+
+[allowlist]
+description = "合成占位符与文档中的示例值"
+regexes = [
+  # 本仓库测试向量用的合成 key
+  '''0123456789abcdef0123456789abcdef''',
+  # 全 0 / 全 f / 递增等明显占位符
+  '''(?i)^(0{32}|f{32}|1{32}|0123456789abcdef0123456789abcdef)$''',
+]
+paths = [
+  '''tests/test_vectors\.json$''',
+]
